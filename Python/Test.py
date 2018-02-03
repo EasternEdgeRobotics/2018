@@ -52,7 +52,7 @@ while True:
         mask = cv2.inRange(img, lower, upper)    #creating a mask of only pixels that have color in range
         allmask += mask                          #adds this mask to all maskes to be rendered
         
-    output = cv2.bitwise_and(img, img, mask = allmask)   
+    outputImage = cv2.bitwise_and(img, img, mask = allmask)   
     cv2.imshow('cam', np.hstack([img, outputImage]))     #displays image with masks added
 
     if cv2.waitKey(1) == 27:          #if ESC is pressed, quit program
