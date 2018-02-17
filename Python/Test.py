@@ -56,12 +56,13 @@ while True:
     
     outputImage = cv2.bitwise_and(img, img, mask = allmask)
 
-    edge_detect = cv2.blur(outputImage, (5,5))      #creting a new image for detecting corners, this is a blured verion of the output image
+    edge_detect = cv2.blur(outputImage, (8,8))      #creting a new image for detecting corners, this is a blured verion of the output image
     edge_detect = cv2.Canny(edge_detect, 75, 200)   #this turns the image into lines only
 
     
     try:   #safety net lol
-        corners = cv2.goodFeaturesToTrack(edge_detect, 100,0.7,50)  #finding corners and putting them into an array
+                                    #      img   max_corners  math_constant  min_distance
+        corners = cv2.goodFeaturesToTrack(edge_detect, 6,0.9,100)  #finding corners and putting them into an array
         if len(corners) > 0:
             corners = np.int0(corners)   #converting values from long to int i think
 
