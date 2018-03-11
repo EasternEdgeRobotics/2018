@@ -99,24 +99,20 @@ int changePosition() //This is the function to change the position!
     {
         cout << "Where do you want to move?" << endl;
         cin >> p;
-        if (p == 'w') //Updates position
-        {
-            y = y + 1;
-        }
-            else if (p == 'a')
-            {
+        switch (p){
+            case 'w' :      //updates position
+                y = y + 1;
+                break;
+            case 'a' :
                 x = x - 1;
-            }
-            else if (p == 's')
-            {
+                break;
+            case 's' :
                 y = y - 1;
-            }
-            else if (p == 'd')
-            {
+                break;
+            case 'd' :
                 x = x + 1;
-            }
-            else if (p == 'x') //Call to drop item
-            {
+                break;
+            case 'x' :          //call to  show inventory and drop item
                 char choice;
                 cout << "_____________________________________________" << endl;
                 item1.showItem(1);
@@ -125,31 +121,29 @@ int changePosition() //This is the function to change the position!
                 cout << "_____________________________________________" << endl;
                 cout << "which item would you like to drop?" << endl;
                 cin >> choice;
-                if (choice == '1')
-                {
-                    item1.getItem(1); //Erases item
-                    xa = x;           //Updates item positon to current position
-                    ya = y;
+                switch (choice) {
+                    case '1' :
+                        item1.getItem(1); //Erases item
+                        xa = x;           //Updates item positon to current position
+                        ya = y;
+                        break;
+                    case '2' :
+                        item1.getItem(2);
+                        xb = x;
+                        yb = y;
+                        break;
+                    case '3' :
+                        item1.getItem(3);
+                        xc = x;
+                        yc = y;
+                        break;
                 }
-                if (choice == '2')
-                {
-                    item1.getItem(2);
-                    xb = x;
-                    yb = y;
-                }
-                if (choice == '3')
-                {
-                    item1.getItem(3);
-                    xc = x;
-                    yc = y;
-                }
-            }
-            else if (p == 'b') //Ends game
-            {
+                break;
+            case 'b' :    //sets y to value that will end the loop
                 y = 12;
                 cout << "Goodbye!" << endl;
-                return 0;
-            }
+                return 0; //ends game
+        }
         if (y > 10) //Movement Restrictions
         {
             cout << "You can't go there! What do you think this is, an 11 x 11 grid?" << endl;
