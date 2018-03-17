@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -pedantic -fPIC -g -Os -std=c++11  -rdynamic CMakeFiles/alogeplot.dir/main.cpp.o CMakeFiles/alogeplot.dir/EPlotEngine.cpp.o  -o /home/nick/eer/moos-ivp/bin/alogeplot /home/nick/eer/moos-ivp/lib/liblogutils.a /home/nick/eer/moos-ivp/lib/libencounters.a /home/nick/eer/moos-ivp/lib/libmbutil.a -lm 
