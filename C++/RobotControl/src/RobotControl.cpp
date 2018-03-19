@@ -10,6 +10,7 @@
 #include "control/RapaPololuMaestro/RPMSerialInterface.h"
 using namespace std;
 
+<<<<<<< HEAD
 int main() {
 	// Create the interface
 	    RPM::SerialInterface* serialInterface = RPM::SerialInterface::createSerialInterface( "COM5", 9600 );
@@ -28,3 +29,5 @@ int main() {
 
 	    return 0;
 }
+=======
+>>>>>>> f1c358d7f681c30248a41e5ce122f21f7f17531a
