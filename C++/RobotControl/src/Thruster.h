@@ -13,20 +13,23 @@
 class Thruster {
 private:
 
+	
 	const int MAX_FWD = 7992;
-//1880
+
 	const int MIN_FWD = 6112;
 
 	const int MAX_REV = 4022;
-//1880
+	
 	const int MIN_REV = 5902;
 
 	const int ZERO = 6000;
 
+	//CONSTANT FOR HOW FAST THE THRUSTER WILL SWICH SPEEDS. THIS IS GOOD VALUE, ANYTHING HIGHER THE THRUSTER COULD DISCONNECT.
 	const int ACCERLERATION = 20;
 
 	int currentSpeed = 0;
-
+	
+	//LIBMAESTRO VARIABLE TO CALL FUNCTIONS
 	Maestro maestro;
 
 
