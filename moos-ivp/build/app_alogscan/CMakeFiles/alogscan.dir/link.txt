@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -pedantic -fPIC -g -Os -std=c++11  -rdynamic CMakeFiles/alogscan.dir/main.cpp.o CMakeFiles/alogscan.dir/ScanHandler.cpp.o  -o /home/nick/eer/moos-ivp/bin/alogscan /home/nick/eer/moos-ivp/lib/libmbutil.a /home/nick/eer/moos-ivp/lib/liblogutils.a -lm 

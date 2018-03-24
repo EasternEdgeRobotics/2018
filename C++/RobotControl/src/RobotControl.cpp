@@ -7,5 +7,27 @@
 //============================================================================
 
 #include <iostream>
+#include "control/RapaPololuMaestro/RPMSerialInterface.h"
 using namespace std;
 
+<<<<<<< HEAD
+int main() {
+	// Create the interface
+	    RPM::SerialInterface* serialInterface = RPM::SerialInterface::createSerialInterface( "COM5", 9600 );
+	    if ( !serialInterface->isOpen() ){
+	        cout << "nahfam";
+	    	return -1;
+	    }
+
+	    // Set the value of channel 0 to 6000 quarter-of-microseconds (i.e. 1.5 milliseconds)
+	    serialInterface->setTargetCP( 0, 6000 );
+
+	    unsigned int sleep(200);
+
+	    // Delete the interface
+	    delete serialInterface;
+
+	    return 0;
+}
+=======
+>>>>>>> f1c358d7f681c30248a41e5ce122f21f7f17531a
