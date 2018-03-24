@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Wno-unused-parameter -pedantic -fPIC -Os -std=c++11 -fPIC -fPIC -O3 -DNDEBUG  -rdynamic CMakeFiles/umm.dir/umm.cpp.o  -o /home/nick/eer/moos-ivp/bin/umm ../../../lib/libMOOS.a -lpthread -lm 

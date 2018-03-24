@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -pedantic -fPIC -g -Os -std=c++11  -rdynamic CMakeFiles/alogrm.dir/main.cpp.o CMakeFiles/alogrm.dir/FiltHandler.cpp.o  -o /home/nick/eer/moos-ivp/bin/alogrm /home/nick/eer/moos-ivp/lib/libmbutil.a /home/nick/eer/moos-ivp/lib/liblogutils.a -lm 

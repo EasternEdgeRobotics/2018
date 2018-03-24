@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nick/eer/moos-ivp/ivp/src/app_alogsplit/main.cpp
+string
+-
+cstdlib
+-
+iostream
+-
+MBUtils.h
+/home/nick/eer/moos-ivp/ivp/src/app_alogsplit/MBUtils.h
+ReleaseInfo.h
+/home/nick/eer/moos-ivp/ivp/src/app_alogsplit/ReleaseInfo.h
+SplitHandler.h
+/home/nick/eer/moos-ivp/ivp/src/app_alogsplit/SplitHandler.h
+
+/home/nick/eer/moos-ivp/ivp/src/lib_logutils/SplitHandler.h
+vector
+-
+string
+-
+map
+-
+set
+-
+
+/home/nick/eer/moos-ivp/ivp/src/lib_mbutil/MBUtils.h
+vector
+-
+string
+-
+set
+-
+time.h
+-
+
+/home/nick/eer/moos-ivp/ivp/src/lib_mbutil/ReleaseInfo.h
+string
+-
+

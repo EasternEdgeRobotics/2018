@@ -1,0 +1,7 @@
+//------------------------------------------------
+// pTopside config block
+ProcessConfig = pTopside
+{
+   AppTick   = 4
+   CommsTick = 4
+}

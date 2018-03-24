@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Wno-unused-parameter -pedantic -fPIC -Os -std=c++11 -fPIC -fPIC -O3 -DNDEBUG  -rdynamic CMakeFiles/io_test.dir/IOTest.cpp.o  -o /home/nick/eer/moos-ivp/bin/tests/io_test ../../../lib/libMOOS.a -lpthread -lm 

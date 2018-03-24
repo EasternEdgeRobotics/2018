@@ -1,0 +1,7 @@
+//------------------------------------------------
+// pRasPi config block
+ProcessConfig = pRasPi
+{
+   AppTick   = 4
+   CommsTick = 4
+}
