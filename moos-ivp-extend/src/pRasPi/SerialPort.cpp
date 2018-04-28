@@ -32,9 +32,9 @@ void SerialPort::encodeData(int stepperState[], int stepperDir[], int stepperCou
     }
     for (int i = 0; i < 2; i++)
     {
-        if (stepperCount[i] < 10)
+        if (servo[i] < 10)
             data += '0';
-        if (stepperCount[i] < 100)
+        if (servo[i] < 100)
             data += '0';
         data += to_string(servo[i]);
     }
