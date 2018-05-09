@@ -1,7 +1,6 @@
 #include "rovWindow.h"
 
 using namespace std;
-
 rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	: Fl_Window(g_w, g_h, g_l)
 {
@@ -116,19 +115,40 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	end();
 	show();		//show the window
 }
-void rovWindow::buttonChanges(bool& b)
-											//This function will set all of the button presets
-{											//It's up to the pilot what the values are!
-	if (button->value() == 1 && b == false)	//Naturally they will need to be updated later
-	{
-		mainPower->value(50.00);
-		b = true;
+void rovWindow::buttonChanges(bool b[])
+												//This function will set all of the button presets
+{												//It's up to the pilot what the values are!
+	if (button->value() == 1 && b[0] == false)	//Naturally they will need to be updated later
+	{											//The bool array makes it so that the value is set once as the button is hit,
+			mainPower->value(50.00);			//instead of being continuously set while the button is on
+			b[0] = true;
 	}
-	if (button2->value() == 1 && b == false)
+	if (button2->value() == 1 && b[1] == false)
 	{
-		mainPower->value(25.00);
-		b = true;
+			mainPower->value(25.00);
+			b[1] = true;
 	}
+	///////////////////////////
+	if (button->value() == 0)
+		b[0] = false;
+	if (button2->value() == 0)
+		b[1] = false;
+	if (button3->value() == 0)
+		b[2] = false;
+	if (button4->value() == 0)
+		b[3] = false;
+	if (button5->value() == 0)
+		b[4] = false;
+	if (button6->value() == 0)
+		b[5] = false;
+	if (button7->value() == 0)
+		b[6] = false;
+	if (button8->value() == 0)
+		b[7] = false;
+	if (button9->value() == 0)
+		b[8] = false;
+	if (button10->value() == 0)
+		b[9] = false;
 }
 void rovWindow::updateSliderArray(double sliderValues[]) //This updates every sliders values into an array so they can be accessed and used
 {
@@ -145,7 +165,7 @@ int main()
 {
 	rovWindow window(1000, 450, "Eastern Edge 2018");
 	double sv[7];
-	bool b = false;
+	bool b[10] = { false, false, false, false, false, false, false, false, false, false };
 	while (Fl::wait())
 	{
 		window.buttonChanges(b);

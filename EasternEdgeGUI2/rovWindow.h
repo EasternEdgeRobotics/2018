@@ -23,7 +23,7 @@ class rovWindow : public Fl_Window
 public:
 	rovWindow(int w, int h, const char *l = 0);
 	~rovWindow() {}
-	void buttonChanges(bool& b);
+	void buttonChanges(bool b[]);
 	void updateSliderArray(double sliderValues[]);
 	Fl_Value_Slider* mainPower;
 	Fl_Value_Slider* surge;
