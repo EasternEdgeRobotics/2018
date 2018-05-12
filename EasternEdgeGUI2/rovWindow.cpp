@@ -103,14 +103,34 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	button9->selection_color(0x58b5b800);
 	button10->selection_color(0x58b5b800);
 	/////////////////////////////////////
-	topLeft = new Fl_Value_Input(660, 110, 40, 20, " ");
-	topRight = new Fl_Value_Input(830, 110, 40, 20, " ");
-	bottomLeft = new Fl_Value_Input(660, 260, 40, 20, " ");
-	bottomRight = new Fl_Value_Input(830, 260, 40, 20, " ");
+	topLeft = new Fl_Value_Input(660, 100, 40, 20, " ");
+	topRight = new Fl_Value_Input(830, 100, 40, 20, " ");
+	bottomLeft = new Fl_Value_Input(660, 250, 40, 20, " ");
+	bottomRight = new Fl_Value_Input(830, 250, 40, 20, " ");
 	/////////////////////////////////////
-	motorBox = new Fl_Box(705, 135, 120, 120, " ");
+	motorBox = new Fl_Box(705, 125, 120, 120, " ");
 	motorBox->box(FL_UP_BOX);
 	motorBox->color(0x9EA8A300);
+	goButton = new Fl_Button(740, 165, 50, 40, "GO");
+	goButton->color(0x9EA8A300);
+	goButton->selection_color(0x58b5b800);
+	goButton->labelfont(FL_BOLD);
+	goButton->shortcut('g');
+	/////////////////////////////////////
+	acoustic = new Fl_Toggle_Button(660, 290, 110, 30, "ACOUSTIC");
+	electromagnet = new Fl_Toggle_Button(660, 340, 110, 30, "ELECTROMAGNET");
+	//
+	acoustic->labelsize(12);
+	electromagnet->labelsize(12);
+	//
+	acoustic->labelfont(FL_BOLD);
+	electromagnet->labelfont(FL_BOLD);
+	//
+	acoustic->color(0x9EA8A300);
+	electromagnet->color(0x9EA8A300);
+	//
+	acoustic->selection_color(0x58b5b800);
+	electromagnet->selection_color(0x58b5b800);
 	/////////////////////////////////////
 	end();
 	show();		//show the window
@@ -160,16 +180,56 @@ void rovWindow::updateSliderArray(double sliderValues[]) //This updates every sl
 	sliderValues[5] = pitch->value();
 	sliderValues[6] = roll->value();
 }
+void rovWindow::getGo(double angleValues[]) //Same use as updateSliderArray, except with the motor angles
+{
+	if (goButton->value() == 1)
+	{
+		angleValues[0] = topLeft->value();
+		angleValues[1] = topRight->value();
+		angleValues[2] = bottomLeft->value();
+		angleValues[3] = bottomRight->value();
 
+		topLeft->value(0);
+		topRight->value(0);
+		bottomLeft->value(0);
+		bottomRight->value(0);
+	}
+}
+void rovWindow::toggleBool(bool& a, bool& e)
+{
+	if (acoustic->value() == 1) //stores if the acoustics button is on or off
+	{
+		a = true;
+	}
+	else
+	{
+		a = false;
+	}
+	
+	if (electromagnet->value() == 1) //stores if the electromagnet button is on or off
+	{
+		e = true;
+	}
+	else
+	{
+		e = false;
+	}
+}
+/////////////////////////////////////////////////
 int main()
 {
 	rovWindow window(1000, 450, "Eastern Edge 2018");
 	double sv[7];
+	double go[4] = { 0,0,0,0 };
 	bool b[10] = { false, false, false, false, false, false, false, false, false, false };
+	bool a = false;
+	bool e = false;
 	while (Fl::wait())
 	{
 		window.buttonChanges(b);
 		window.updateSliderArray(sv);
+		window.getGo(go);
+		window.toggleBool(a, e);
 	}
 	return 0;
 }
