@@ -7,6 +7,8 @@
 #include <FL/Fl_Round_Button.H>
 #include <FL/Fl_Radio_Light_Button.H>
 #include <FL/Fl_Value_Input.H>
+#include <FL/Fl_Button.H>
+#include <FL/Fl_Toggle_Button.H>
 #include <array>
 
 using namespace std;
@@ -25,6 +27,8 @@ public:
 	~rovWindow() {}
 	void buttonChanges(bool b[]);
 	void updateSliderArray(double sliderValues[]);
+	void getGo(double angleValues[]);
+	void toggleBool(bool& a, bool& e);
 	Fl_Value_Slider* mainPower;
 	Fl_Value_Slider* surge;
 	Fl_Value_Slider* heave;
@@ -50,4 +54,8 @@ public:
 	Fl_Value_Input* bottomRight;
 	////////////////////////////////
 	Fl_Box* motorBox;
+	Fl_Button* goButton;
+	////////////////////////////////
+	Fl_Toggle_Button* acoustic;
+	Fl_Toggle_Button* electromagnet;
 };
