@@ -15,6 +15,8 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	yaw = new Fl_Value_Slider(380, 60, 40, 160, "YAW");
 	pitch = new Fl_Value_Slider(460, 60, 40, 160, "PITCH");
 	roll = new Fl_Value_Slider(540, 60, 40, 160, "ROLL");
+	fore = new Fl_Value_Slider(620, 60, 40, 160, "FORE");
+	aft = new Fl_Value_Slider(700, 60, 40, 160, "AFT");
 	/////////////////////////////////sets the limits for the control sliders
 	mainPower->bounds(100, 0); 
 	surge->bounds(100, 0);
@@ -23,6 +25,8 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	yaw->bounds(100, 0);
 	pitch->bounds(100, 0);
 	roll->bounds(100, 0);
+	fore->bounds(100, 0);
+	aft->bounds(100, 0);
 	///////////////////////////////changes the font style of the sliders
 	mainPower->labelfont(FL_BOLD);
 	surge->labelfont(FL_BOLD);
@@ -31,6 +35,8 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	yaw->labelfont(FL_BOLD);
 	pitch->labelfont(FL_BOLD);
 	roll->labelfont(FL_BOLD);
+	fore->labelfont(FL_BOLD);
+	aft->labelfont(FL_BOLD);
 	///////////////////////////////changes the colour of the inside of the slider
 	mainPower->color(0xABCDC800);
 	surge->color(0xABCDC800);
@@ -39,6 +45,8 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	yaw->color(0xABCDC800);
 	pitch->color(0xABCDC800);
 	roll->color(0xABCDC800);
+	fore->color(0xABCDC800);
+	aft->color(0xABCDC800);
 	///////////////////////////////////changes the colour of the slider buttons
 	mainPower->selection_color(0x58b5b800);
 	surge->selection_color(0x58b5b800);
@@ -47,6 +55,8 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	yaw->selection_color(0x58b5b800);
 	pitch->selection_color(0x58b5b800);
 	roll->selection_color(0x58b5b800);
+	fore->selection_color(0x58b5b800);
+	aft->selection_color(0x58b5b800);
 	///////////////////////////////////defines the buttons
 	button = new Fl_Radio_Light_Button(76, 270, 30, 30, "1");
 	button2 = new Fl_Radio_Light_Button(192, 270, 30, 30, "2");
@@ -103,22 +113,22 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	button9->selection_color(0x58b5b800);
 	button10->selection_color(0x58b5b800);
 	/////////////////////////////////////
-	topLeft = new Fl_Value_Input(660, 100, 40, 20, " ");
-	topRight = new Fl_Value_Input(830, 100, 40, 20, " ");
-	bottomLeft = new Fl_Value_Input(660, 250, 40, 20, " ");
-	bottomRight = new Fl_Value_Input(830, 250, 40, 20, " ");
+	topLeft = new Fl_Value_Input(820, 60, 40, 20, " ");
+	topRight = new Fl_Value_Input(990, 60, 40, 20, " ");
+	bottomLeft = new Fl_Value_Input(820, 210, 40, 20, " ");
+	bottomRight = new Fl_Value_Input(990, 210, 40, 20, " ");
 	/////////////////////////////////////
-	motorBox = new Fl_Box(705, 125, 120, 120, " ");
+	motorBox = new Fl_Box(865, 85, 120, 120, " ");
 	motorBox->box(FL_UP_BOX);
-	motorBox->color(0x9EA8A300);
-	goButton = new Fl_Button(740, 165, 50, 40, "GO");
+	motorBox->color(0xABCDC800);
+	goButton = new Fl_Button(900, 125, 50, 40, "GO");
 	goButton->color(0x9EA8A300);
 	goButton->selection_color(0x58b5b800);
 	goButton->labelfont(FL_BOLD);
 	goButton->shortcut('g');
 	/////////////////////////////////////
-	acoustic = new Fl_Toggle_Button(660, 290, 110, 30, "ACOUSTIC");
-	electromagnet = new Fl_Toggle_Button(660, 340, 110, 30, "ELECTROMAGNET");
+	acoustic = new Fl_Toggle_Button(660, 270, 110, 30, "ACOUSTIC");
+	electromagnet = new Fl_Toggle_Button(660, 330, 110, 30, "ELECTROMAGNET");
 	//
 	acoustic->labelsize(12);
 	electromagnet->labelsize(12);
@@ -132,6 +142,11 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	acoustic->selection_color(0x58b5b800);
 	electromagnet->selection_color(0x58b5b800);
 	/////////////////////////////////////
+	depth = new Fl_Value_Output(860, 270, 40, 20, "DEPTH");
+	depth->labelfont(FL_BOLD);
+	depth->color(0xABCDC800);
+	//////////////////////////
+	//killSwitch = new Fl_Button();
 	end();
 	show();		//show the window
 }
@@ -148,7 +163,7 @@ void rovWindow::buttonChanges(bool b[])
 			mainPower->value(25.00);
 			b[1] = true;
 	}
-	///////////////////////////
+	//start of false checking for each button
 	if (button->value() == 0)
 		b[0] = false;
 	if (button2->value() == 0)
@@ -179,6 +194,8 @@ void rovWindow::updateSliderArray(double sliderValues[]) //This updates every sl
 	sliderValues[4] = yaw->value();
 	sliderValues[5] = pitch->value();
 	sliderValues[6] = roll->value();
+	sliderValues[7] = fore->value();
+	sliderValues[8] = aft->value();
 }
 void rovWindow::getGo(double angleValues[]) //Same use as updateSliderArray, except with the motor angles
 {
@@ -218,12 +235,13 @@ void rovWindow::toggleBool(bool& a, bool& e)
 /////////////////////////////////////////////////
 int main()
 {
-	rovWindow window(1000, 450, "Eastern Edge 2018");
-	double sv[7];
+	rovWindow window(1100, 450, "Eastern Edge 2018");
+	double sv[9] = { 0,0,0,0,0,0,0,0,0 };
 	double go[4] = { 0,0,0,0 };
 	bool b[10] = { false, false, false, false, false, false, false, false, false, false };
 	bool a = false;
 	bool e = false;
+	//loop begin
 	while (Fl::wait())
 	{
 		window.buttonChanges(b);
