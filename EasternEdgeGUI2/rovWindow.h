@@ -29,7 +29,7 @@ public:
 	void updateSliderArray(double sliderValues[]);
 	void getGo(double angleValues[]);
 	void toggleBool(bool& a, bool& e);
-	void killKillKill();
+	void goodBye();
 	////////////////////////////////
 	Fl_Value_Slider* mainPower;
 	Fl_Value_Slider* surge;
@@ -65,5 +65,5 @@ public:
 	////////////////////////////////
 	Fl_Value_Output* depth;
 
-	Fl_Button* killSwitch;
+	Fl_Button* turnOff;
 };
