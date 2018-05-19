@@ -146,7 +146,13 @@ rovWindow::rovWindow(int g_w, int g_h, const char *g_l)
 	depth->labelfont(FL_BOLD);
 	depth->color(0xABCDC800);
 	//////////////////////////
-	//killSwitch = new Fl_Button();
+	killSwitch = new Fl_Button(60, 380, 110, 30, "EMERGENCY");
+	killSwitch->labelsize(12);
+	killSwitch->labelfont(FL_BOLD);
+	killSwitch->color(0x58b5b800);
+	killSwitch->selection_color(FL_RED);
+	killSwitch->shortcut('s');
+	//////////////////////////////
 	end();
 	show();		//show the window
 }
@@ -232,6 +238,14 @@ void rovWindow::toggleBool(bool& a, bool& e)
 		e = false;
 	}
 }
+void rovWindow::killKillKill()
+{
+	if (killSwitch->value() == 1)
+	{
+		Fl::delete_widget(this);
+		return;
+	}
+}
 /////////////////////////////////////////////////
 int main()
 {
@@ -248,6 +262,7 @@ int main()
 		window.updateSliderArray(sv);
 		window.getGo(go);
 		window.toggleBool(a, e);
+		window.killKillKill();
 	}
 	return 0;
 }
